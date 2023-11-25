@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DesktopSidebar } from "./Assets";
+import { DesktopSidebar, MobileSidebar } from "./Assets";
 import PersonalInfoForm from "../PersonalInfoForm";
 import useMultiStepForm from "../hooks/useMultiStepForm";
 import SelectPlanForm from "../SelectPlanForm";
@@ -38,12 +38,12 @@ const FormCard = ({ children }) => {
   } = useMultiStepForm(forms.length);
 
   return (
-    <div className="flex flex-1 bg-white rounded-6 text-black p-4 gap-8 w-[900px] font-ubuntuRegular">
+    <div className="flex flex-1 sm:flex-col bg-white rounded-6 text-black p-4 gap-8  font-ubuntuRegular">
       {/* sidebar */}
       <div className="sidebar relative text-white">
         {/* nav elements */}
         <nav className="absolute p-8">
-          <ul className=" flex flex-col gap-10">
+          <ul className="sm:flex-row flex flex-col gap-10">
             {forms.map((form, i) => {
               return (
                 <li
@@ -61,7 +61,7 @@ const FormCard = ({ children }) => {
                     {i + 1}
                   </span>
                   <span>
-                    <div className="inline-flex flex-col justify-center">
+                    <div className="sm:hidden lg:inline-flex flex-col justify-center">
                       <span className="text-pastelBlue text-sm uppercase">
                         STEP {i + 1}
                       </span>
@@ -73,7 +73,13 @@ const FormCard = ({ children }) => {
             })}
           </ul>
         </nav>
-        <DesktopSidebar className="absolute" />
+        {/* sidebars */}
+        <div className="sm:block lg:hidden bg-purplishBlue">
+          <MobileSidebar />
+        </div>
+        <div className="sm:hidden lg:block">
+          <DesktopSidebar className="" />
+        </div>
       </div>
 
       {/* right side */}

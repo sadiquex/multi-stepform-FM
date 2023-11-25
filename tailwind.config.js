@@ -12,8 +12,8 @@ export default {
 
       // breakpoints
       screens: {
-        sm: "375px",
-        lg: "1440px",
+        sm: { min: "100px", max: "960px" },
+        lg: { min: "960px" },
       },
 
       // colors
