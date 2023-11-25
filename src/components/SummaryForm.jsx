@@ -1,6 +1,12 @@
-import React from "react";
+import { planOptions } from "./SelectPlanForm";
 
-const SummaryForm = ({ yearlyPlan, isOnlineService, isLargerStorage }) => {
+const SummaryForm = ({
+  yearlyPlan,
+  isOnlineService,
+  isLargerStorage,
+  isCustomizableProfile,
+  plan,
+}) => {
   return (
     <div className="flex flex-col space-y-4 pt-6">
       {/* title texts */}
@@ -15,11 +21,18 @@ const SummaryForm = ({ yearlyPlan, isOnlineService, isLargerStorage }) => {
         <div className="text-marineBlue w-[100%] flex justify-between items-center">
           {/* left side */}
           <span>
-            <p className="font-ubuntuBold">Arcade(Monthly)</p>
+            <p className="font-ubuntuBold">
+              {plan}({!yearlyPlan ? "Monthly" : "Yearly"})
+            </p>
             <p className="font-ubuntuRegular underline text-coolGray">Change</p>
           </span>
           {/* right side */}
-          <span className="font-ubuntuBold">$9/mo</span>
+          <span className="font-ubuntuBold">
+            {/* if is yearly is false, show the monthly cost, else show the yearly cost */}
+            {!yearlyPlan
+              ? `$${planOptions[plan].monthly}/mo`
+              : `$${planOptions[plan].yearly}/yr`}
+          </span>
         </div>
         {/* line */}
         <hr className="h-px bg-coolGray border-0 my-4" />
@@ -27,20 +40,56 @@ const SummaryForm = ({ yearlyPlan, isOnlineService, isLargerStorage }) => {
         {/* second */}
         <div className="text-marineBlue w-[100%] flex flex-col gap-1 justify-between items-center">
           {/* online service */}
-          <span className="flex justify-between w-[100%]">
-            <p className="font-ubuntuRegular text-coolGray">Online Service</p>
-            <p className="font-ubuntuRegular text-marineBlue">$1/mo</p>
-          </span>
+          {isOnlineService ? (
+            <span className="flex justify-between w-[100%]">
+              <p className="font-ubuntuRegular text-coolGray">Online Service</p>
+              <p className="font-ubuntuRegular text-marineBlue">
+                {!yearlyPlan
+                  ? `$${planOptions.onlineServices.monthly}/mo`
+                  : `$${planOptions.onlineServices.yearly}/yr`}
+              </p>
+            </span>
+          ) : (
+            ""
+          )}
+
           {/* larger storage */}
-          <span className="flex justify-between w-[100%]">
-            <p className="font-ubuntuRegular text-coolGray">Larger Storage</p>
-            <p className="font-ubuntuRegular text-marineBlue">$2/mo</p>
-          </span>
+          {isLargerStorage ? (
+            <span className="flex justify-between w-[100%]">
+              <p className="font-ubuntuRegular text-coolGray">Larger Storage</p>
+              <p className="font-ubuntuRegular text-marineBlue">
+                {!yearlyPlan
+                  ? `$${planOptions.largerStorage.monthly}/mo`
+                  : `$${planOptions.largerStorage.yearly}/yr`}
+              </p>
+            </span>
+          ) : (
+            ""
+          )}
+          {/* customizable profile */}
+          {isCustomizableProfile ? (
+            <span className="flex justify-between w-[100%]">
+              <p className="font-ubuntuRegular text-coolGray">
+                Customizable Profile
+              </p>
+              <p className="font-ubuntuRegular text-marineBlue">
+                {!yearlyPlan
+                  ? `$${planOptions.customizableProfile.monthly}/mo`
+                  : `$${planOptions.customizableProfile.yearly}/yr`}
+              </p>
+            </span>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <span className="flex justify-between items-center w-[94%] mx-auto">
-        <p className="font-ubuntuRegular text-coolGray">Total (Per Month)</p>
-        <p className="font-ubuntuBold text-purplishBlue text-[24px]">$2/mo</p>
+        <p className="font-ubuntuRegular text-coolGray">
+          Total {!yearlyPlan ? "(Per Month)" : "(Per Year)"}
+        </p>
+        <p className="font-ubuntuBold text-purplishBlue text-[24px]">
+          {!yearlyPlan ? "$12/mo" : "$120/yr"}
+        </p>
       </span>
     </div>
   );

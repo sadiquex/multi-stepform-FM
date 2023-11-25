@@ -1,5 +1,33 @@
 import { AdvancedIcon, ArcadeIcon, ProIcon } from "./shared/Assets";
 
+// plans options available
+export const planOptions = {
+  Arcade: {
+    monthly: 9,
+    yearly: 90,
+  },
+  Advanced: {
+    monthly: 12,
+    yearly: 120,
+  },
+  Pro: {
+    monthly: 15,
+    yearly: 150,
+  },
+  onlineServices: {
+    monthly: 1,
+    yearly: 10,
+  },
+  largerStorage: {
+    monthly: 2,
+    yearly: 20,
+  },
+  customizableProfile: {
+    monthly: 2,
+    yearly: 20,
+  },
+};
+
 const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
   return (
     <div className="flex flex-col space-y-4 pt-6">
@@ -30,7 +58,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
               {yearlyPlan ? (
                 <span>
                   <p className="text-coolGray text-sm font-ubuntuRegular">
-                    $90/yr
+                    ${planOptions.Arcade.yearly}/yr
                   </p>
 
                   <p className="text-marineBlue text-sm font-ubuntuRegular">
@@ -39,7 +67,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
                 </span>
               ) : (
                 <p className="text-coolGray text-sm font-ubuntuRegular">
-                  $9/mo
+                  ${planOptions.Arcade.monthly}/mo
                 </p>
               )}
             </div>

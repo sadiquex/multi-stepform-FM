@@ -1,1 +1,0 @@
-- Create an empty state to store the user input for all forms

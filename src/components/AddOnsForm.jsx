@@ -33,6 +33,16 @@ const AddOnsForm = ({
             }
           />
           <div className="max-w-xl rounded-md border border-red-400 p-5 text-marineBlue ring-1 ring-lightGray transition-all peer-checked:ring-purplishBlue peer-checked:bg-magnolia w-[100%] flex justify-between items-center">
+            <input
+              type="checkbox"
+              id="isOnlineService"
+              name="isOnlineService"
+              checked={isOnlineService}
+              className="peer"
+              onChange={(e) =>
+                updateFormHandler({ isOnlineService: e.target.checked })
+              }
+            />
             {/* left side */}
             <span>
               <p className="font-ubuntuBold">Online Service</p>
@@ -59,6 +69,16 @@ const AddOnsForm = ({
             }
           />
           <div className="max-w-xl rounded-md border border-red-400 p-5 text-marineBlue ring-1 ring-lightGray transition-all peer-checked:ring-purplishBlue peer-checked:bg-magnolia w-[100%] flex justify-between items-center">
+            <input
+              type="checkbox"
+              id="isLargerStorage"
+              name="isLargerStorage"
+              className="peer"
+              checked={isLargerStorage}
+              onChange={(e) =>
+                updateFormHandler({ isLargerStorage: e.target.checked })
+              }
+            />
             {/* left side */}
             <span>
               <p className="font-ubuntuBold">Larger Storage</p>
@@ -85,9 +105,19 @@ const AddOnsForm = ({
             }
           />
           <div className="max-w-xl rounded-md border border-red-400 p-5 text-marineBlue ring-1 ring-lightGray transition-all peer-checked:ring-purplishBlue peer-checked:bg-magnolia w-[100%] flex justify-between items-center">
+            <input
+              type="checkbox"
+              id="isCustomizableProfile"
+              name="isCustomizableProfile"
+              className="peer"
+              checked={isCustomizableProfile}
+              onChange={(e) =>
+                updateFormHandler({ isCustomizableProfile: e.target.checked })
+              }
+            />
             {/* left side */}
             <span>
-              <p className="font-ubuntuBold">Customizable Profiles</p>
+              <p className="font-ubuntuBold">Customizable Profile</p>
               <p className="font-ubuntuRegular">
                 Custom themes on your profile
               </p>
