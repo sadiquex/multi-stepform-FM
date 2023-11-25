@@ -5,8 +5,9 @@ import useMultiStepForm from "../hooks/useMultiStepForm";
 import SelectPlanForm from "../SelectPlanForm";
 import AddOnsForm from "../AddOnsForm";
 import SummaryForm from "../SummaryForm";
+import ThankYouPage from "../ThankYouPage";
 
-const FormCard = ({ children }) => {
+const FormCard = () => {
   const initialValues = {
     name: "",
     email: "",
@@ -37,12 +38,16 @@ const FormCard = ({ children }) => {
     isLastStep,
   } = useMultiStepForm(forms.length);
 
+  const boxShadow = "shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]";
+
   return (
-    <div className="flex flex-1 sm:flex-col bg-white rounded-6 text-black p-4 gap-8  font-ubuntuRegular">
+    <div
+      className={`sm:flex-col sm:items-center flex sm:w-auto w-[800px] rounded-lg sm:p-0 bg-white rounded-6 p-4 gap-8 font-ubuntuRegular ${boxShadow}`}
+    >
       {/* sidebar */}
       <div className="sidebar relative text-white">
         {/* nav elements */}
-        <nav className="absolute p-8">
+        <nav className="absolute p-8 sm:top-[50%] sm:-translate-y-[50%]">
           <ul className="sm:flex-row flex flex-col gap-10">
             {forms.map((form, i) => {
               return (
@@ -54,9 +59,9 @@ const FormCard = ({ children }) => {
                   <span
                     className={` ${
                       currentIndex === i
-                        ? "bg-pastelBlue text-marineBlue ring-offset-0"
+                        ? "bg-pastelBlue text-marineBlue  "
                         : ""
-                    } rounded-full font-ubuntuBold h-[32px] w-[32px] inline-flex justify-center items-center mr-4 ring-offset-2 ring-2`}
+                    } rounded-full font-ubuntuBold h-[32px] w-[32px] inline-flex justify-center items-center mr-4 ring-offset-1 ring-2`}
                   >
                     {i + 1}
                   </span>
@@ -74,16 +79,18 @@ const FormCard = ({ children }) => {
           </ul>
         </nav>
         {/* sidebars */}
-        <div className="sm:block lg:hidden bg-purplishBlue">
+        <div className="sm:block lg:hidden bg-blue-500">
           <MobileSidebar />
         </div>
-        <div className="sm:hidden lg:block">
+        <div className="sm:hidden lg:block rounded-lg overflow-hidden">
           <DesktopSidebar className="" />
         </div>
       </div>
 
       {/* right side */}
-      <div className="flex flex-1 justify-between bg-white flex-col gap-2">
+      <div
+        className={`sm:${boxShadow} sm:absolute top-[15%] flex flex-1 justify-between bg-white sm:px-6 sm:w-[90%] sm:rounded-md flex-col gap-2`}
+      >
         {currentIndex === 0 && (
           // pass the form data object to each form
           <PersonalInfoForm
@@ -97,26 +104,34 @@ const FormCard = ({ children }) => {
         {currentIndex === 2 && (
           <AddOnsForm {...formData} updateFormHandler={updateFormHandler} />
         )}
-        {currentIndex === 3 && <SummaryForm />}
+        {currentIndex === 3 && <SummaryForm {...formData} />}
+        {/* last step - Thank you form */}
+        {isLastStep && <ThankYouPage />}
 
-        <div className="pb-6">
-          {/* buttons */}
-          <div className="relative flex justify-between items-center w-[90%] mx-auto font-ubuntuMedium">
-            {!isFirstStep && (
-              <button
-                onClick={goBackwards}
-                className="py-2 px-4 text-marineBlue "
-              >
-                Go Back
-              </button>
-            )}
+        {/* buttons */}
+        <div className="relative flex justify-between items-center w-[90%] mx-auto font-ubuntuMedium sm:pt-5 pb-6 h-[100px]">
+          {!isFirstStep && (
+            <button onClick={goBackwards} className="py-2 px-4 text-coolGray">
+              Go Back
+            </button>
+          )}
+          {isLastStep ? (
+            <button
+              onClick={() => {
+                alert("im adding the thank you page :)");
+              }}
+              className="bg-marineBlue text-white py-2 px-4 absolute right-0 rounded-[8px]"
+            >
+              Confirm
+            </button>
+          ) : (
             <button
               onClick={goForward}
               className="bg-marineBlue text-white py-2 px-4 absolute right-0 rounded-[8px]"
             >
-              {isLastStep ? "Confirm" : "Next Step"}
+              Next Step
             </button>
-          </div>
+          )}
         </div>
       </div>
     </div>

@@ -52,7 +52,7 @@ export function MobileSidebar() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
       width="375"
       height="172"
       viewBox="0 0 375 172"
@@ -64,7 +64,7 @@ export function MobileSidebar() {
         <mask id="b" fill="#fff">
           <use xlinkHref="#a" />
         </mask>
-        <use xlink:href="#a" fill="#483EFF" />
+        <use xlinkHref="#a" fill="#483EFF" />
         <g mask="url(#b)">
           <g transform="translate(-151.029 -133.957)">
             <path

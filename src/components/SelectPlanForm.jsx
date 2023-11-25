@@ -1,3 +1,5 @@
+import { AdvancedIcon, ArcadeIcon, ProIcon } from "./shared/Assets";
+
 const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
   return (
     <div className="flex flex-col space-y-4 pt-6">
@@ -10,7 +12,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
       </p>
 
       {/* cards */}
-      <div className="grid grid-cols-3 gap-2">
+      <div className="sm:flex flex-col grid grid-cols-3 gap-2">
         {/* arcade */}
         <label htmlFor="arcade" className="">
           <input
@@ -21,21 +23,26 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
             checked={plan === "Arcade"}
             onChange={(e) => updateFormHandler({ plan: "Arcade" })}
           />
-          <div className=" max-w-xl rounded-md p-5 text-marineBlue font-ubuntuBold ring-2 ring-transparent transition-all peer-checked:ring-purplishBlue peer-checked:bg-alabaster">
-            Arcade
-            {yearlyPlan ? (
-              <span>
-                <p className="text-coolGray text-sm font-ubuntuRegular">
-                  $90/yr
-                </p>
+          <div className="sm:flex-row gap-2 sm:justify-start flex flex-col justify-between max-w-xl rounded-md p-5 text-marineBlue font-ubuntuBold ring-1 ring-lightGray transition-all peer-checked:ring-purplishBlue peer-checked:bg-alabaster">
+            <ArcadeIcon />
+            <div className="">
+              Arcade
+              {yearlyPlan ? (
+                <span>
+                  <p className="text-coolGray text-sm font-ubuntuRegular">
+                    $90/yr
+                  </p>
 
-                <p className="text-marineBlue text-sm font-ubuntuRegular">
-                  2 months free
+                  <p className="text-marineBlue text-sm font-ubuntuRegular">
+                    2 months free
+                  </p>
+                </span>
+              ) : (
+                <p className="text-coolGray text-sm font-ubuntuRegular">
+                  $9/mo
                 </p>
-              </span>
-            ) : (
-              <p className="text-coolGray text-sm font-ubuntuRegular">$9/mo</p>
-            )}
+              )}
+            </div>
           </div>
         </label>
 
@@ -49,22 +56,27 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
             checked={plan === "Advanced"}
             onChange={(e) => updateFormHandler({ plan: "Advanced" })}
           />
-          <div className=" max-w-xl rounded-md bg-white p-5 text-marineBlue font-ubuntuBold ring-2 ring-transparent transition-all peer-checked:ring-purplishBlue peer-checked:bg-alabaster">
-            Advanced
-            {/* if yearlyPlan is true, show $120/year and 2 months free, else show $90/yr */}
-            {yearlyPlan ? (
-              <span>
-                <p className="text-coolGray text-sm font-ubuntuRegular">
-                  $120/yr
-                </p>
+          <div className="sm:flex-row gap-2 sm:justify-start flex flex-col justify-between max-w-xl rounded-md p-5 text-marineBlue font-ubuntuBold ring-1 ring-lightGray transition-all peer-checked:ring-purplishBlue peer-checked:bg-alabaster">
+            <AdvancedIcon />
+            <div>
+              Advanced
+              {/* if yearlyPlan is true, show $120/year and 2 months free, else show $90/yr */}
+              {yearlyPlan ? (
+                <span>
+                  <p className="text-coolGray text-sm font-ubuntuRegular ">
+                    $120/yr
+                  </p>
 
-                <p className="text-marineBlue text-sm font-ubuntuRegular">
-                  2 months free
+                  <p className="text-marineBlue text-sm font-ubuntuRegular ">
+                    2 months free
+                  </p>
+                </span>
+              ) : (
+                <p className="text-coolGray text-sm font-ubuntuRegular">
+                  $12/mo
                 </p>
-              </span>
-            ) : (
-              <p className="text-coolGray text-sm font-ubuntuRegular">$12/mo</p>
-            )}
+              )}
+            </div>
           </div>
         </label>
 
@@ -78,21 +90,26 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
             checked={plan === "Pro"}
             onChange={(e) => updateFormHandler({ plan: "Pro" })}
           />
-          <div className="max-w-xl rounded-md bg-white p-5 text-marineBlue font-ubuntuBold ring-2 ring-transparent transition-all peer-checked:ring-purplishBlue peer-checked:bg-alabaster">
-            Pro
-            {yearlyPlan ? (
-              <span>
-                <p className="text-coolGray text-sm font-ubuntuRegular">
-                  $150/yr
-                </p>
+          <div className="sm:flex-row gap-2 sm:justify-start flex flex-col justify-between max-w-xl rounded-md p-5 text-marineBlue font-ubuntuBold ring-1 ring-lightGray transition-all peer-checked:ring-purplishBlue peer-checked:bg-alabaster">
+            <ProIcon />
+            <div>
+              Pro
+              {yearlyPlan ? (
+                <span>
+                  <p className="text-coolGray text-sm font-ubuntuRegular">
+                    $150/yr
+                  </p>
 
-                <p className="text-marineBlue text-sm font-ubuntuRegular">
-                  2 months free
+                  <p className="text-marineBlue text-sm font-ubuntuRegular">
+                    2 months free
+                  </p>
+                </span>
+              ) : (
+                <p className="text-coolGray text-sm font-ubuntuRegular">
+                  $15/mo
                 </p>
-              </span>
-            ) : (
-              <p className="text-coolGray text-sm font-ubuntuRegular">$15/mo</p>
-            )}
+              )}
+            </div>
           </div>
         </label>
       </div>
