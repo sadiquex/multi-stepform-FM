@@ -6,7 +6,19 @@ const SummaryForm = ({
   isLargerStorage,
   isCustomizableProfile,
   plan,
+  updateFormHandler,
 }) => {
+  //
+
+  // grab values for the true booleans: [isOnlineService, isLargerStorage, isCustomizableProfile]
+  const sumHandler = () => {
+    if (isOnlineService.monthly) {
+      console.log(isOnlineService);
+    }
+  };
+
+  sumHandler();
+
   return (
     <div className="flex flex-col space-y-4 pt-6">
       {/* title texts */}
@@ -24,7 +36,13 @@ const SummaryForm = ({
             <p className="font-ubuntuBold">
               {plan}({!yearlyPlan ? "Monthly" : "Yearly"})
             </p>
-            <p className="font-ubuntuRegular underline text-coolGray">Change</p>
+            <button
+              type="button"
+              className="font-ubuntuRegular underline cursor-pointer text-coolGray hover:text-purplishBlue"
+              onClick={() => updateFormHandler({ yearlyPlan: !yearlyPlan })}
+            >
+              Change
+            </button>
           </span>
           {/* right side */}
           <span className="font-ubuntuBold">

@@ -21,6 +21,8 @@ const FormCard = () => {
 
   // states to manage user input
   const [formData, setFormData] = useState(initialValues);
+  // state to check whether user has confirmed
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   // function to update form
   const updateFormHandler = (fieldToUpdate) => {
@@ -86,54 +88,62 @@ const FormCard = () => {
           <DesktopSidebar className="" />
         </div>
       </div>
-
-      {/* right side */}
-      <div
-        className={`sm:${boxShadow} sm:absolute top-[15%] flex flex-1 justify-between bg-white sm:px-6 sm:w-[90%] sm:rounded-md flex-col gap-2`}
-      >
-        {currentIndex === 0 && (
-          // pass the form data object to each form
-          <PersonalInfoForm
-            formData={formData}
-            updateFormHandler={updateFormHandler}
-          />
-        )}
-        {currentIndex === 1 && (
-          <SelectPlanForm {...formData} updateFormHandler={updateFormHandler} />
-        )}
-        {currentIndex === 2 && (
-          <AddOnsForm {...formData} updateFormHandler={updateFormHandler} />
-        )}
-        {currentIndex === 3 && <SummaryForm {...formData} />}
-        {/* last step - Thank you form */}
-        {isLastStep && <ThankYouPage />}
-
-        {/* buttons */}
-        <div className="relative flex justify-between items-center w-[90%] mx-auto font-ubuntuMedium sm:pt-5 pb-6 h-[100px]">
-          {!isFirstStep && (
-            <button onClick={goBackwards} className="py-2 px-4 text-coolGray">
-              Go Back
-            </button>
+      {/* if we're not on the last step, show the forms, else show thank you page */}
+      {!isConfirmed ? (
+        <div
+          className={`sm:${boxShadow} sm:absolute top-[15%] flex flex-1 justify-between bg-white sm:px-6 sm:w-[90%] sm:rounded-md flex-col gap-2`}
+        >
+          {currentIndex === 0 && (
+            // pass the form data object to each form
+            <PersonalInfoForm
+              formData={formData}
+              updateFormHandler={updateFormHandler}
+            />
           )}
-          {isLastStep ? (
-            <button
-              onClick={() => {
-                alert("im adding the thank you page :)");
-              }}
-              className="bg-marineBlue text-white py-2 px-4 absolute right-0 rounded-[8px]"
-            >
-              Confirm
-            </button>
-          ) : (
-            <button
-              onClick={goForward}
-              className="bg-marineBlue text-white py-2 px-4 absolute right-0 rounded-[8px]"
-            >
-              Next Step
-            </button>
+          {currentIndex === 1 && (
+            <SelectPlanForm
+              {...formData}
+              updateFormHandler={updateFormHandler}
+            />
           )}
+          {currentIndex === 2 && (
+            <AddOnsForm {...formData} updateFormHandler={updateFormHandler} />
+          )}
+          {currentIndex === 3 && (
+            <SummaryForm {...formData} updateFormHandler={updateFormHandler} />
+          )}
+          {/* last step - Thank you form */}
+          {/* {isLastStep && <ThankYouPage />} */}
+
+          {/* buttons */}
+          <div className="relative flex justify-between items-center w-[90%] mx-auto font-ubuntuMedium sm:pt-5 pb-6 h-[100px]">
+            {!isFirstStep && (
+              <button onClick={goBackwards} className="py-2 px-4 text-coolGray">
+                Go Back
+              </button>
+            )}
+            {isLastStep ? (
+              <button
+                onClick={() => {
+                  setIsConfirmed(!isConfirmed);
+                }}
+                className="bg-marineBlue text-white py-2 px-4 absolute right-0 rounded-[8px]"
+              >
+                Confirm
+              </button>
+            ) : (
+              <button
+                onClick={goForward}
+                className="bg-marineBlue text-white py-2 px-4 absolute right-0 rounded-[8px]"
+              >
+                Next Step
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <ThankYouPage />
+      )}
     </div>
   );
 };

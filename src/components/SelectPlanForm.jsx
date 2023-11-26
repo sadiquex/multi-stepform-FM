@@ -42,7 +42,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
       {/* cards */}
       <div className="sm:flex flex-col grid grid-cols-3 gap-2">
         {/* arcade */}
-        <label htmlFor="arcade" className="">
+        <label htmlFor="arcade">
           <input
             type="radio"
             name="plan"
@@ -75,7 +75,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
         </label>
 
         {/* advanced */}
-        <label htmlFor="advanced" className="">
+        <label htmlFor="advanced">
           <input
             type="radio"
             name="plan"
@@ -92,7 +92,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
               {yearlyPlan ? (
                 <span>
                   <p className="text-coolGray text-sm font-ubuntuRegular ">
-                    $120/yr
+                    ${planOptions.Advanced.yearly}/yr
                   </p>
 
                   <p className="text-marineBlue text-sm font-ubuntuRegular ">
@@ -101,7 +101,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
                 </span>
               ) : (
                 <p className="text-coolGray text-sm font-ubuntuRegular">
-                  $12/mo
+                  ${planOptions.Advanced.monthly}/mo
                 </p>
               )}
             </div>
@@ -109,7 +109,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
         </label>
 
         {/* pro */}
-        <label htmlFor="pro" className="">
+        <label htmlFor="pro">
           <input
             type="radio"
             name="plan"
@@ -125,7 +125,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
               {yearlyPlan ? (
                 <span>
                   <p className="text-coolGray text-sm font-ubuntuRegular">
-                    $150/yr
+                    ${planOptions.Pro.yearly}/yr
                   </p>
 
                   <p className="text-marineBlue text-sm font-ubuntuRegular">
@@ -134,7 +134,7 @@ const SelectPlanForm = ({ plan, yearlyPlan, updateFormHandler }) => {
                 </span>
               ) : (
                 <p className="text-coolGray text-sm font-ubuntuRegular">
-                  $15/mo
+                  ${planOptions.Arcade.monthly}/mo
                 </p>
               )}
             </div>

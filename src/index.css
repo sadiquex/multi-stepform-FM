@@ -103,7 +103,7 @@ section {
 }
 body {
   line-height: 1;
-  /* background: #141415; */
+  background: hsl(217, 100%, 97%);
   color: #fff;
   display: flex;
   height: 100vh;
