@@ -94,7 +94,7 @@ const FormCard = () => {
         {currentIndex === 0 && (
           // pass the form data object to each form
           <PersonalInfoForm
-            {...formData}
+            formData={formData}
             updateFormHandler={updateFormHandler}
           />
         )}
